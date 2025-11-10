@@ -27,11 +27,11 @@
 		<%@include file="Header.jsp"%>
 	</div>
 	<div class="text-cs1">
-		<center>
+		<div align="center">
 			<h1 style="padding-top: 20%; color: white">
 				<b class="cl">" Welcome to online result system "</b>
 			</h1>
-		</center>
+		</div>
 	</div>
 	<div class="footer">
 		<%@include file="FooterView.jsp"%>
