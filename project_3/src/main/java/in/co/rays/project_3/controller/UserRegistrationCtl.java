@@ -131,6 +131,8 @@ public class UserRegistrationCtl extends BaseCtl {
 		dto.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
+		
+		populateBean(dto, request);
 
 		return dto;
 	}

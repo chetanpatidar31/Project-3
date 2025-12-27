@@ -60,7 +60,7 @@ i.css {
 							  long id=DataUtility.getLong(request.getParameter("id"));
 							
 							
-								if (dto.getFirstName()!=null) {
+								if (dto.getFirstName() != null && id > 0) {
 							%>
 							<h3 class="text-center default-text text-primary">Update User</h3>
 							<%
@@ -140,7 +140,7 @@ i.css {
 	<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("lastName", request)%></font></br>		
 	
 								<%
-								if (dto.getFirstName()!=null && id>0) {
+								if (dto.getFirstName() != null && id > 0) {
 								%>
 								<input type="hidden" name="password" value="<%=DataUtility.getStringData(dto.getPassword()) %>">
 								<input type="hidden"  name="confirmPassword" value="<%=DataUtility.getStringData(dto.getPassword())%>">
@@ -240,7 +240,7 @@ i.css {
     </div>	
 	<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("dob", request)%></font></br>
 					<%
-							if (dto.getFirstName()!=null) {
+							if (dto.getFirstName() != null && id > 0) {
 							%>
 
 							<div class="text-center">

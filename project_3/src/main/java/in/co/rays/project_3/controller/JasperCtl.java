@@ -38,49 +38,49 @@ public class JasperCtl extends BaseCtl {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
+	        throws ServletException, IOException {
+	    try {
+	        ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
+	        System.out.println("bundle loaded");
 
-			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
+	        // Resolve actual file path of the JRXML file
+	        String relativePath = rb.getString("jasperctl");
+	        String fullPath = getServletContext().getRealPath("/" + relativePath);
+	        System.out.println("Resolved JRXML Path: " + fullPath);
 
-			/* Compilation of jrxml file */
-			JasperReport jasperReport = JasperCompileManager.compileReport(rb.getString("jasperctl"));
+	        // Compile the report
+	        JasperReport jasperReport = JasperCompileManager.compileReport(fullPath);
+	        System.out.println("Report compiled");
 
-			HttpSession session = request.getSession(true);
+	        HttpSession session = request.getSession(true);
+	        UserDTO dto = (UserDTO) session.getAttribute("user");
 
-			UserDTO dto = (UserDTO) session.getAttribute("user");
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("ID", 1L);
 
-			dto.getFirstName();
-			dto.getLastName();
+	        java.sql.Connection conn = null;
+	        String Database = rb.getString("DATABASE");
 
-			Map<String, Object> map = new HashMap<String, Object>();
+	        if ("Hibernate".equalsIgnoreCase(Database)) {
+	            conn = ((SessionImpl) HibDataSource.getSession()).connection();
+	        } else if ("JDBC".equalsIgnoreCase(Database)) {
+	            conn = JDBCDataSource.getConnection();
+	        }
 
-			map.put("ID", 1l);
-			java.sql.Connection conn = null;
+	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
+	        System.out.println("Report filled");
 
-			String Database = rb.getString("DATABASE");
+	        byte[] pdf = JasperExportManager.exportReportToPdf(jasperPrint);
+	        System.out.println("Report exported");
 
-			if ("Hibernate".equalsIgnoreCase(Database)) {
-				conn = ((SessionImpl) HibDataSource.getSession()).connection();
-			}
+	        response.setContentType("application/pdf");
+	        response.getOutputStream().write(pdf);
+	        response.getOutputStream().flush();
 
-			if ("JDBC".equalsIgnoreCase(Database)) {
-				conn = JDBCDataSource.getConnection();
-			}
-
-			/* Filling data into the report */
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
-
-			/* Export Jasper report */
-			byte[] pdf = JasperExportManager.exportReportToPdf(jasperPrint);
-
-			response.setContentType("application/pdf");
-			response.getOutputStream().write(pdf);
-			response.getOutputStream().flush();
-
-		} catch (Exception e) {
-
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.getWriter().write("Error generating Jasper Report: " + e.getMessage());
+	    }
 	}
 
 	@Override

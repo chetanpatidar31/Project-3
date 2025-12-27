@@ -32,8 +32,6 @@ public class UserModelHibImp implements UserModelInt {
 
 	public long add(UserDTO dto) throws ApplicationException, DuplicateRecordException {
 
-		System.out.println("in addddddddddddd");
-		// TODO Auto-generated method stub
 		/* log.debug("usermodel hib start"); */
 
 		UserDTO existDto = null;
@@ -48,11 +46,8 @@ public class UserModelHibImp implements UserModelInt {
 			int pk = 0;
 			tx = session.beginTransaction();
 
-			System.out.println("trac1");
 			session.save(dto);
-			System.out.println("trac2");
 			tx.commit();
-			System.out.println("trac3");
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			// TODO: handle exception
@@ -159,7 +154,6 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public List list(int pageNo, int pageSize) throws ApplicationException {
-		// TODO Auto-generated method stub
 		Session session = null;
 		List list = null;
 		try {
@@ -183,12 +177,10 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public List search(UserDTO dto) throws ApplicationException {
-		// TODO Auto-generated method stub
 		return search(dto, 0, 0);
 	}
 
 	public List search(UserDTO dto, int pageNo, int pageSize) throws ApplicationException {
-		// TODO Auto-generated method stub
 
 		System.out.println(
 				"hellllo" + pageNo + "....." + pageSize + "........" + dto.getId() + "......" + dto.getRoleId());
