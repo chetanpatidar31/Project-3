@@ -115,7 +115,7 @@
 <!-- Search Panel -->
 <div class="row">
 
-	<div class="col-sm-2"></div>
+	<div class="col-sm-3"></div>
 
 	<div class="col-sm-2">
 		<input type="text" name="fullName"
@@ -129,11 +129,11 @@
 			value="<%=ServletUtility.getParameter("username", request)%>">
 	</div>
 
-	<div class="col-sm-2">
+	<%-- <div class="col-sm-2">
 		<input type="text" name="contactNo"
 			placeholder="Enter Contact No" class="form-control"
 			value="<%=ServletUtility.getParameter("contactNo", request)%>">
-	</div>
+	</div> --%>
 
 	<div class="col-sm-3">
 		<input type="submit" class="btn btn-primary btn-md"
@@ -142,7 +142,7 @@
 			name="operation" value="<%=EmployeeListCtl.OP_RESET%>">
 	</div>
 
-	<div class="col-sm-1"></div>
+	<div class="col-sm-2"></div>
 </div>
 
 <br>
