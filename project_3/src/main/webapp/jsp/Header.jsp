@@ -170,12 +170,19 @@
                             <a class="dropdown-item" href="<%=ORSView.SUBJECT_LIST_CTL%>"><i class="fa fa-sort-amount-down"></i>Subject List</a>
                         </div></li>
 
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+                    <%-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
                         href="#" data-toggle="dropdown" style="color:white;">Product</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="<%=ORSView.PRODUCT_CTL%>"><i class="fa fa-file"></i>Add Product</a>
                             <a class="dropdown-item" href="<%=ORSView.PRODUCT_LIST_CTL%>"><i class="fa fa-paste"></i>Product List</a>
-                        </div></li>
+                        </div></li> --%>
+                        
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+                        href="#" data-toggle="dropdown" style="color:white;">Employee</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="<%=ORSView.EMPLOYEE_CTL%>"><i class="fa fa-user-plus"></i>Add Employee</a>
+                            <a class="dropdown-item" href="<%=ORSView.EMPLOYEE_LIST_CTL%>"><i class="fa fa-id-badge"></i>Employee List</a>
+                        </div></li>    
 
                 <% } %>
 

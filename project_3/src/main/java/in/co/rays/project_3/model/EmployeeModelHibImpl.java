@@ -136,7 +136,7 @@ public class EmployeeModelHibImpl implements EmployeeModelInt {
 	public List search(EmployeeDTO dto, int pageNo, int pageSize) throws ApplicationException {
 
 		Session session = null;
-		ArrayList<EmployeeDTO> list = null;
+		List list = null;
 		try {
 			session = HibDataSource.getSession();
 			Criteria criteria = session.createCriteria(EmployeeDTO.class);
@@ -170,9 +170,9 @@ public class EmployeeModelHibImpl implements EmployeeModelInt {
 				criteria.setFirstResult(pageNo);
 				criteria.setMaxResults(pageSize);
 			}
-			list = (ArrayList<EmployeeDTO>) criteria.list();
+			list = criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in user search");
+			throw new ApplicationException("Exception in Employee search");
 		} finally {
 			session.close();
 		}

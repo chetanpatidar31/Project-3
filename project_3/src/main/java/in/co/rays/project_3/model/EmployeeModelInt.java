@@ -16,7 +16,7 @@ public interface EmployeeModelInt {
 
 	public EmployeeDTO findByPK(long pk) throws ApplicationException;
 
-	public EmployeeDTO findByUsername(String name) throws ApplicationException;
+	public EmployeeDTO findByUsername(String username) throws ApplicationException;
 
 	public List list() throws ApplicationException;
 

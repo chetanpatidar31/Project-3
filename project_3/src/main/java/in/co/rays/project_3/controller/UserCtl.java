@@ -155,7 +155,6 @@ public class UserCtl extends BaseCtl {
 		System.out.println(request.getParameter("confirmPassword"));
 
 		dto.setId(DataUtility.getLong(request.getParameter("id")));
-
 		dto.setRoleId(DataUtility.getLong(request.getParameter("role")));
 		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
 		dto.setFirstName(DataUtility.getString(request.getParameter("firstName")));

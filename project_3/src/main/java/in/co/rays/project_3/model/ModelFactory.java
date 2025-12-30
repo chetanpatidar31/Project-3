@@ -28,6 +28,38 @@ public final class ModelFactory {
 		return mFactory;
 	}
 
+	public UserModelInt getUserModel() {
+
+		UserModelInt userModel = (UserModelInt) modelCache.get("userModel");
+		if (userModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				userModel = new UserModelHibImp();
+			}
+			if ("JDBC".equals(DATABASE)) {
+				userModel = new UserModelJDBCImpl();
+			}
+			modelCache.put("userModel", userModel);
+		}
+
+		return userModel;
+	}
+
+	public EmployeeModelInt getEmployeeModel() {
+
+		EmployeeModelInt employeeModel = (EmployeeModelInt) modelCache.get("employeeModel");
+		if (employeeModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				employeeModel = new EmployeeModelHibImpl();
+			}
+			if ("JDBC".equals(DATABASE)) {
+				employeeModel = new EmployeeModelJDBCImpl();
+			}
+			modelCache.put("employeeModel", employeeModel);
+		}
+
+		return employeeModel;
+	}
+
 	public ProductModelInt getProductModel() {
 		ProductModelInt productModel = (ProductModelInt) modelCache.get("productModel");
 		if (productModel == null) {
@@ -84,22 +116,6 @@ public final class ModelFactory {
 			modelCache.put("roleModel", roleModel);
 		}
 		return roleModel;
-	}
-
-	public UserModelInt getUserModel() {
-
-		UserModelInt userModel = (UserModelInt) modelCache.get("userModel");
-		if (userModel == null) {
-			if ("Hibernate".equals(DATABASE)) {
-				userModel = new UserModelHibImp();
-			}
-			if ("JDBC".equals(DATABASE)) {
-				userModel = new UserModelJDBCImpl();
-			}
-			modelCache.put("userModel", userModel);
-		}
-
-		return userModel;
 	}
 
 	public StudentModelInt getStudentModel() {
